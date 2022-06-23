@@ -7,9 +7,12 @@ export const CategoryScreen = ({navigation}) => {
     
     function renderCategoryItem (itemData) {
 
+        const meal = itemData.item;
+
         function pressHandler () {
-            navigation.navigate("Meals", {
-                categoryId: itemData.item.id
+            navigation.navigate("MealsOverview", {
+                categoryId: itemData.item.id,
+                title: meal.title
             })
         }
 
