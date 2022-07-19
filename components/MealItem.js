@@ -1,12 +1,14 @@
 import {View, Text, StyleSheet, Pressable, Image, Platform} from 'react-native';
 
-export const MealItem = ({ title, imageUrl, duration, complexity, affordability }) => {
+export const MealItem = ({ title, imageUrl, duration, complexity, affordability, handlePress }) => {
     return (
         <View style={styles.mealContainer}>
             <Pressable style={ ({pressed}) => [
                 styles.mealButton,
                 pressed && styles.mealButtonPressed 
-            ] }>
+            ] }
+            onPress={handlePress}
+            >
                 <View>
                     <Image style={styles.mealImage} source={{uri: imageUrl}} />
                     <Text style={styles.title}>{title}</Text>

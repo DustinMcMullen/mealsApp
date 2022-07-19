@@ -18,6 +18,13 @@ export const MealsOverviewScreen = ({ route, navigation }) => {
 
     function renderMeal (itemData) {
         let item = itemData.item;
+
+        function pressHandler () {
+            navigation.navigate("MealDetails", {
+                mealId: item.id,
+                title: item.title
+            })
+        }
         return (
             <MealItem
                 title={item.title}
@@ -25,6 +32,7 @@ export const MealsOverviewScreen = ({ route, navigation }) => {
                 duration={item.duration}
                 complexity={item.complexity}
                 affordability={item.affordability}
+                handlePress={pressHandler}
             />
         )
     }
