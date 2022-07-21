@@ -5,17 +5,25 @@ import { MEALS } from "../data/dummy-data"
 import { MealDetails } from "../components/MealDetails";
 import { Subtitle } from "../components/MealDetail/Subtitle";
 import { List } from "../components/MealDetail/List";
+import { IconButton } from "../components/IconButton";
 
 export const MealDetailScreen = ({route, navigation}) => {
     const mealId = route.params.mealId;
     const meal = MEALS.find( (meal) => meal.id === mealId );
 
+    function headerBtnPressHandler () {
+        console.log("header button presssed");
+    }
+
     useLayoutEffect(() => {
         const mealTitle = MEALS.find( (meal) => meal.id === mealId )?.title;
         navigation.setOptions({
             title: mealTitle,
+            headerRight: () => {
+                return <IconButton icon="star" color="white" pressHandler={headerBtnPressHandler} />
+            }
         })
-    }, [mealId, navigation]);
+    }, [mealId, navigation, headerBtnPressHandler]);
 
     return (
         <ScrollView style={styles.rootContainer}>
