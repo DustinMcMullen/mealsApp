@@ -1,8 +1,19 @@
 import {View, Text, StyleSheet, Pressable, Image, Platform} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-import { MealDetails } from './MealDetails';
+import { MealDetails } from '../MealDetails';
 
-export const MealItem = ({ title, imageUrl, duration, complexity, affordability, handlePress }) => {
+export const MealItem = ({ id, title, imageUrl, duration, complexity, affordability }) => {
+
+    const navigation = useNavigation();
+
+    function handlePress () {
+            navigation.navigate("MealDetails", {
+                mealId: id,
+                title: title
+            })
+        }
+
     return (
         <View style={styles.mealContainer}>
             <Pressable style={ ({pressed}) => [
