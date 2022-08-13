@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import {View, Text, StyleSheet} from 'react-native';
 
 import { MEALS } from "../data/dummy-data";
 
@@ -9,5 +10,24 @@ export const FavoritesScreen = ({ navigation }) => {
     const favoriteMealsCtx = useContext(FavoritesContext);
     const favoriteMeals = favoriteMealsCtx.ids.map( (favoriteId) => MEALS.find( meal => meal.id === favoriteId ) );
 
-    return <MealsList items={favoriteMeals} />
+    return (favoriteMeals.length ? 
+        <MealsList items={favoriteMeals} />
+    : 
+        <View style={styles.favoritesTextCont}>
+            <Text style={styles.text}>Add favorites to see them here</Text>
+        </View>
+    )
 }
+
+const styles = StyleSheet.create({
+    favoritesTextCont: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    text: {
+        fontSize: 18,
+        fontWeight: "bold",
+        color: "white",
+    }
+})
